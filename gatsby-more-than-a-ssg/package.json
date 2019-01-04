@@ -2,7 +2,7 @@
   "name": "gatsby-more-than-a-ssg",
   "private": true,
   "version": "1.0.0",
-  "description": "Deck created with mdx-deck",
+  "description": "Gatsby - More than a Static Site Generator",
   "scripts": {
     "start": "mdx-deck deck.mdx",
     "build": "mdx-deck build deck.mdx",
