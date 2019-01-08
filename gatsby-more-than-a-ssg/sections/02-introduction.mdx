@@ -1,0 +1,105 @@
+import { Highlight } from '../components'
+import { Appear } from 'mdx-deck'
+
+export default Highlight
+
+# What is Gatsby?
+
+---
+
+# Gatsby is a Static <span className="faded">Site</span>/<span className="gatsby">PWA</span> Generator for React
+
+```notes
+- Produces just! static HTML
+```
+
+---
+
+# static files !== static app
+
+<Appear><h2 style={{ textAlign: 'center' }}>Gatsby rehydrates into a <span className="blue">React</span> app</h2></Appear>
+
+---
+
+## Blazingly fast by default
+
+```notes
+- Gatsby was designed in a way that it is really hard to build a slow site
+```
+
+<img style={{ marginTop: 'var(--t-m)' }} src={require("file-loader!../assets/lighthouse.jpg")} alt="Google Lighthouse Score" />
+
+---
+
+# How?
+
+<ul>
+    <Appear>
+        <li>Follows the PRPL pattern</li>
+        <li>Route-based code splitting</li>
+        <li>Lazy-Loading pages whose links are in the viewport</li>
+        <li>Inlining of critical resources</li>
+        <li>Query only the data you need</li>
+        <li>Simple to do, high performant image optimizations</li>
+    </Appear>
+</ul>
+
+```notes
+- Push critical resources, render initial route, pre-cache routes, lazy-load content
+- Loading components for routes, not all at once
+- Using Intersection Observer for lazy-loading
+- CSS/JS above the fold gets inlined
+```
+
+---
+
+## gatsby-image
+
+<video style={{ width: '1200px', marginTop: 'var(--t-m)' }} src={require("file-loader!../assets/gatsby-image.mp4")} autoPlay loop />
+
+```notes
+- Loads optimal size of image for every device
+- Loading effects
+- Lazy-Loading
+```
+
+---
+
+## GraphQL
+
+<iframe style={{ height: '800px', width: '1200px', marginTop: 'var(--t-m)' }} src="https://711808k40x.sse.codesandbox.io/___graphql?query=%7B%0A%20%20site%20%7B%0A%20%20%20%20siteMetadata%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"></iframe>
+
+```notes
+- Besser durchsuchbar
+- Single Source of Truth
+- Skalierbar
+- Consistent with every data source
+```
+
+---
+
+## Life of an Gatsby app
+
+![](../assets/gatsby-path.png)
+
+```notes
+- Node APIs to laod any data source into GraphQL
+- Static Build & Deploy to FTP/Netlify (It's just HTML/CSS/JS). No server needed!
+- Simpler deployment & reduced DevOps
+- Rehydration into React App
+- Dynamic data fetching with e.g. Apollo possible
+```
+
+---
+
+## Gatsby by analogies
+
+<ul>
+    <Appear>
+        <li>Start off with a pre-configured development environment and build process (high-performance car)</li>
+        <li>Benefit from built-in performance optimization (Neo’s Matrix skills)</li>
+        <li>Leverage static site delivery and web app experience (Compressed mattress)</li>
+        <li>Prefetch resources for snappy routing (Psychic delivery person)</li>
+        <li>Consolidate data sourcing and transformations (Amazon)</li>
+    </Appear>
+</ul>
