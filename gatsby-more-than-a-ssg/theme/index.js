@@ -6,6 +6,10 @@ export default {
     ...theme.colors,
     text: 'var(--text)',
     heading: 'var(--black)',
+    link: 'var(--gatsby)',
+  },
+  link: {
+    textDecoration: 'none'
   },
   css: {
     fontSize: '18px',

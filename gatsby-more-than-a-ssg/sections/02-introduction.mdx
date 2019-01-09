@@ -11,6 +11,7 @@ export default Highlight
 
 ```notes
 - Produces just! static HTML
+- "Web Compiler"
 ```
 
 ---
@@ -19,12 +20,17 @@ export default Highlight
 
 <Appear><h2 style={{ textAlign: 'center' }}>Gatsby rehydrates into a <span className="blue">React</span> app</h2></Appear>
 
+```notes
+- You could describe it as create-react-app with SSR files
+```
+
 ---
 
 ## Blazingly fast by default
 
 ```notes
 - Gatsby was designed in a way that it is really hard to build a slow site
+- Adding service workers etc. to fulfill PWA specs is easy
 ```
 
 <img style={{ marginTop: 'var(--t-m)' }} src={require("file-loader!../assets/lighthouse.jpg")} alt="Google Lighthouse Score" />
@@ -61,6 +67,7 @@ export default Highlight
 - Loads optimal size of image for every device
 - Loading effects
 - Lazy-Loading
+- Resizing, Formatting, Effects, Cropping possible
 ```
 
 ---
@@ -70,9 +77,9 @@ export default Highlight
 <iframe style={{ height: '800px', width: '1200px', marginTop: 'var(--t-m)' }} src="https://711808k40x.sse.codesandbox.io/___graphql?query=%7B%0A%20%20site%20%7B%0A%20%20%20%20siteMetadata%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"></iframe>
 
 ```notes
-- Besser durchsuchbar
+- Better search
 - Single Source of Truth
-- Skalierbar
+- Scales with your app
 - Consistent with every data source
 ```
 
