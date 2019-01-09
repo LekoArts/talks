@@ -10,6 +10,12 @@ const Highlight = styled('div')`
   color: var(--white);
   h1, h2, h3, h4, h5, h6 {
     color: var(--white);
+    padding-left: 128px;
+    padding-right: 128px;
+    @media screen and (max-width: 40em) {
+      padding-left: 64px;
+      padding-right: 64px;
+    }
   }
 `
 
