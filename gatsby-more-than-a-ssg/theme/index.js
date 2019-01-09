@@ -6,7 +6,13 @@ export default {
     ...theme.colors,
     text: 'var(--text)',
     heading: 'var(--black)',
-  }
+  },
+  css: {
+    fontSize: '18px',
+    '@media screen and (min-width: 64em)': {
+      fontSize: '32px'
+    }
+  },
 
   // Customize your presentation theme here.
   //

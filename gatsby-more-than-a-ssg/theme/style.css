@@ -19,3 +19,8 @@
 .blue {
   color: var(--blue);
 }
+
+ul li {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
