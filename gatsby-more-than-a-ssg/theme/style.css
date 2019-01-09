@@ -1,0 +1,26 @@
+:root {
+  --gatsby: #663399;
+  --black: black;
+  --text: #333135;
+  --text-light: #493e55;
+  --white: white;
+  --blue: #33418a;
+  --t-m: 3rem;
+}
+
+.gatsby {
+  color: var(--gatsby);
+}
+
+.faded {
+  opacity: 0.5;
+}
+
+.blue {
+  color: var(--blue);
+}
+
+ul li {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}

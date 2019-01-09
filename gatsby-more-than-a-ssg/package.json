@@ -1,0 +1,23 @@
+{
+  "name": "gatsby-more-than-a-ssg",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Gatsby - More than a Static Site Generator",
+  "scripts": {
+    "start": "mdx-deck index.js",
+    "build": "mdx-deck build index.js",
+    "postbuild": "if-env NETLIFY=true && cp -a static/. dist/ || echo \"Not CI\"",
+    "pdf": "mdx-deck pdf index.js",
+    "help": "mdx-deck"
+  },
+  "keywords": [],
+  "author": "LekoArts <hello@lekoarts.de>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "if-env": "^1.0.4",
+    "mdx-deck": "^1.8.2",
+    "style-loader": "^0.23.1"
+  }
+}
