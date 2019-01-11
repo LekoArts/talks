@@ -19,5 +19,8 @@
     "if-env": "^1.0.4",
     "mdx-deck": "^1.8.2",
     "style-loader": "^0.23.1"
+  },
+  "dependencies": {
+    "react-twitter-embed": "^2.0.4"
   }
 }
