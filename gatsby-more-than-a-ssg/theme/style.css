@@ -8,6 +8,10 @@
   --t-m: 3rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 .gatsby {
   color: var(--gatsby);
 }
