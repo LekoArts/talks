@@ -12,6 +12,10 @@ a {
   text-decoration: none;
 }
 
+.language-notes {
+  font-size: 1.5rem;
+}
+
 .gatsby {
   color: var(--gatsby);
 }
