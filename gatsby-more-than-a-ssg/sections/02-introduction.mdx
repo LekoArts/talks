@@ -64,22 +64,23 @@ export default Highlight
 
 ---
 
-## gatsby-image
+## Life of a Gatsby app
 
-<img style={{ marginTop: 'var(--t-m)', width: '800px' }} src={require("file-loader!../assets/gatsby-image.gif")} alt="Gatsby Image showing Lazy-Loading" />
+<img style={{ marginTop: 'var(--t-m)', maxWidth: '100%' }} src={require("file-loader!../assets/gatsby-path.png")} alt="Google Lighthouse Score" />
 
 ```notes
-- Loads optimal size of image for every device
-- Loading effects
-- Lazy-Loading
-- Resizing, Formatting, Effects, Cropping possible
+- Node APIs to laod any data source into GraphQL
+- Static Build & Deploy to FTP/Netlify (It's just HTML/CSS/JS). No server needed!
+- Simpler deployment & reduced DevOps
+- Rehydration into React App
+- Dynamic data fetching with e.g. Apollo possible
 ```
 
 ---
 
 ## GraphQL
 
-<iframe style={{ height: '800px', width: '1200px', marginTop: 'var(--t-m)' }} src="https://711808k40x.sse.codesandbox.io/___graphql?query=%7B%0A%20%20site%20%7B%0A%20%20%20%20siteMetadata%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"></iframe>
+<iframe style={{ height: '600px', width: '1200px', marginTop: 'var(--t-m)' }} src="https://711808k40x.sse.codesandbox.io/___graphql?query=%7B%0A%20%20site%20%7B%0A%20%20%20%20siteMetadata%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"></iframe>
 
 ```notes
 - GraphQL is a query language and runtime that we can use to build and expose APIs as a strongly-typed schema instead of hundreds of REST endpoints
@@ -93,16 +94,15 @@ export default Highlight
 
 ---
 
-## Life of an Gatsby app
+## gatsby-image
 
-<img style={{ marginTop: 'var(--t-m)', maxWidth: '100%' }} src={require("file-loader!../assets/gatsby-path.png")} alt="Google Lighthouse Score" />
+<img style={{ marginTop: 'var(--t-m)', width: '800px' }} src={require("file-loader!../assets/gatsby-image.gif")} alt="Gatsby Image showing Lazy-Loading" />
 
 ```notes
-- Node APIs to laod any data source into GraphQL
-- Static Build & Deploy to FTP/Netlify (It's just HTML/CSS/JS). No server needed!
-- Simpler deployment & reduced DevOps
-- Rehydration into React App
-- Dynamic data fetching with e.g. Apollo possible
+- Loads optimal size of image for every device
+- Loading effects
+- Lazy-Loading
+- Resizing, Formatting, Effects, Cropping possible
 ```
 
 ---
