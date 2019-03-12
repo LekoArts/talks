@@ -1,14 +1,14 @@
-import { Highlight } from '../components'
-import { TwitterTweetEmbed } from 'react-twitter-embed'
-import { Appear } from 'mdx-deck'
+import { Highlight } from '../components';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { Appear } from 'mdx-deck';
 
-export default Highlight
+export default Highlight;
 
 # What is Gatsby?
 
 ---
 
-# Gatsby is a Static <span className="faded">Site</span>/<a href="https://www.gatsbyjs.org/docs/progressive-web-app" className="gatsby">PWA</a> Generator for React
+## Gatsby is a free and open source framework based on React to build websites & apps
 
 ```notes
 - Produces just! static HTML
@@ -19,7 +19,11 @@ export default Highlight
 
 # static files !== static app
 
-<Appear><h2 style={{ textAlign: 'center' }}>Gatsby rehydrates into a <span className="blue">React</span> app</h2></Appear>
+<Appear>
+  <h2 style={{ textAlign: 'center' }}>
+    Gatsby rehydrates into a <span className="blue">React</span> app
+  </h2>
+</Appear>
 
 ```notes
 - You could describe it as create-react-app with SSR files
@@ -27,7 +31,11 @@ export default Highlight
 
 ---
 
-<TwitterTweetEmbed style={{ marginTop: '6rem' }} tweetId="1068958188530069505" options={{ cards: 'hidden' }} />
+<TwitterTweetEmbed
+  style={{ marginTop: '6rem' }}
+  tweetId="1068958188530069505"
+  options={{ cards: 'hidden' }}
+/>
 
 ---
 
@@ -38,21 +46,28 @@ export default Highlight
 - Adding service workers etc. to fulfill PWA specs is easy
 ```
 
-<img style={{ marginTop: 'var(--t-m)' }} src={require("file-loader!../assets/lighthouse.jpg")} alt="Google Lighthouse Score" />
+<img
+  style={{ marginTop: 'var(--t-m)' }}
+  src={require('file-loader!../assets/lighthouse.jpg')}
+  alt="Google Lighthouse Score"
+/>
 
 ---
 
 # How?
 
 <ul>
-    <Appear>
-        <li>Follows the <a href="https://www.gatsbyjs.org/docs/prpl-pattern/">PRPL</a> pattern</li>
-        <li>Route-based code splitting</li>
-        <li>Lazy-Loading pages whose links are in the viewport</li>
-        <li>Inlining of critical resources</li>
-        <li>Query only the data you need</li>
-        <li>Simple to do, high performant image optimizations</li>
-    </Appear>
+  <Appear>
+    <li>
+      Follows the <a href="https://www.gatsbyjs.org/docs/prpl-pattern/">PRPL</a>{' '}
+      pattern
+    </li>
+    <li>Route-based code splitting</li>
+    <li>Lazy-Loading pages whose links are in the viewport</li>
+    <li>Inlining of critical resources</li>
+    <li>Query only the data you need</li>
+    <li>Simple to do, high performant image optimizations</li>
+  </Appear>
 </ul>
 
 ```notes
@@ -66,7 +81,11 @@ export default Highlight
 
 ## Life of a Gatsby app
 
-<img style={{ marginTop: 'var(--t-m)', maxWidth: '100%' }} src={require("file-loader!../assets/gatsby-path.png")} alt="Google Lighthouse Score" />
+<img
+  style={{ marginTop: 'var(--t-m)', maxWidth: '100%' }}
+  src={require('file-loader!../assets/gatsby-path.png')}
+  alt="Google Lighthouse Score"
+/>
 
 ```notes
 - Node APIs to laod any data source into GraphQL
@@ -80,7 +99,10 @@ export default Highlight
 
 ## GraphQL
 
-<iframe style={{ height: '600px', width: '1200px', marginTop: 'var(--t-m)' }} src="https://711808k40x.sse.codesandbox.io/___graphql?query=%7B%0A%20%20site%20%7B%0A%20%20%20%20siteMetadata%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"></iframe>
+<iframe
+  style={{ height: '600px', width: '1200px', marginTop: 'var(--t-m)' }}
+  src="https://711808k40x.sse.codesandbox.io/___graphql?query=%7B%0A%20%20site%20%7B%0A%20%20%20%20siteMetadata%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"
+/>
 
 ```notes
 - GraphQL is a query language and runtime that we can use to build and expose APIs as a strongly-typed schema instead of hundreds of REST endpoints
@@ -96,7 +118,11 @@ export default Highlight
 
 ## gatsby-image
 
-<img style={{ marginTop: 'var(--t-m)', width: '800px' }} src={require("file-loader!../assets/gatsby-image.gif")} alt="Gatsby Image showing Lazy-Loading" />
+<img
+  style={{ marginTop: 'var(--t-m)', width: '800px' }}
+  src={require('file-loader!../assets/gatsby-image.gif')}
+  alt="Gatsby Image showing Lazy-Loading"
+/>
 
 ```notes
 - Loads optimal size of image for every device
@@ -110,11 +136,18 @@ export default Highlight
 ## Gatsby by analogies
 
 <ul>
-    <Appear>
-        <li>Start off with a pre-configured development environment and build process (high-performance car)</li>
-        <li>Benefit from built-in performance optimization (Neo’s Matrix skills)</li>
-        <li>Leverage static site delivery and web app experience (Compressed mattress)</li>
-        <li>Prefetch resources for snappy routing (Psychic delivery person)</li>
-        <li>Consolidate data sourcing and transformations (Amazon)</li>
-    </Appear>
+  <Appear>
+    <li>
+      Start off with a pre-configured development environment and build process
+      (high-performance car)
+    </li>
+    <li>
+      Benefit from built-in performance optimization (Neo’s Matrix skills)
+    </li>
+    <li>
+      Leverage static site delivery and web app experience (Compressed mattress)
+    </li>
+    <li>Prefetch resources for snappy routing (Psychic delivery person)</li>
+    <li>Consolidate data sourcing and transformations (Amazon)</li>
+  </Appear>
 </ul>
