@@ -1,0 +1,21 @@
+.slidev-vclick-target {
+  transition: opacity 400ms ease;
+}
+
+.slidev-vclick-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slidev-layout.section h1 {
+  @apply font-bold;
+  @apply text-white;
+}
+
+.slidev-layout.section {
+  @apply bg-gradient-to-tr from-blue-400 to-teal-400;
+}
+
+.slidev-layout.two-columns {
+  grid-gap: 2rem;
+}
