@@ -19,3 +19,7 @@
 .slidev-layout.two-columns {
   grid-gap: 2rem;
 }
+
+.slidev-code .line.dishonored {
+  opacity: 0.4;
+}
