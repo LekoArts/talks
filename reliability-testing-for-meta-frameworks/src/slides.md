@@ -69,6 +69,13 @@ hideInToc: true
 
 <Toc></Toc>
 
+<!--
+Please note: This talk will contain examples using GitHub Actions, Jest, and Cypress.
+The principles and functionalities can all be applied to other software like CircleCI, Vitest, or Playwright.
+
+I want to give you inspiration on things you can test in combination with actionable examples on how to implement it.
+-->
+
 ---
 layout: section
 ---
@@ -125,7 +132,7 @@ But you can automate a lot of testing
 </v-click>
 
 <!--
-With unit & E2E tests
+And your testing coverage won't be perfect right from the start...
 -->
 
 ---
@@ -136,6 +143,27 @@ layout: section
 
 <!--
 Independent on how you view the testing pyramid (listen to the talk "The Pyramid is Dead, Long Live the Pyramid" later), you can give yourself a solid foundation by going the extra mile during initial test setup.
+-->
+
+---
+layout: default
+---
+
+## Foundations
+
+<br />
+
+<v-clicks>
+
+- Unit test core functionalities
+- Build out test utilities and patterns
+- Run your tests on all supported versions and platforms
+- Enjoy your testing setup
+
+</v-clicks>
+
+<!--
+These are things that work well for Gatsby
 -->
 
 ---
@@ -154,6 +182,8 @@ Different path separators:
 # Windows
 \\some\\path
 ```
+
+You can use libraries like [pathe](https://github.com/unjs/pathe) for path normalization.
 
 ESM loader:
 
@@ -174,12 +204,7 @@ hideInToc: true
 
 <br />
 
-```yaml {8-11}
-name: Unit Tests
-on:
-  pull_request:
-    branches: [main]
-
+```yaml {3-6}
 jobs:
   unit-tests:
     strategy:
@@ -195,14 +220,129 @@ layout: default
 hideInToc: true
 ---
 
-Node versions
+## Node.js versions
+
+<br />
+
+```yaml {3-5,12}
+jobs:
+  build:
+    strategy:
+      matrix:
+        node: [16, 18, 20]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: 'Your tests'
+```
 
 ---
 layout: default
 hideInToc: true
 ---
 
-Different browsers
+## Different browsers
+
+<br />
+
+```yaml {3-5,11}
+jobs:
+  build:
+    strategy:
+      matrix:
+        browser: [chrome, firefox]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          browser: ${{ matrix.browser }}
+```
+
+---
+layout: fact
+---
+
+## 🧂 Adjust to your situation accordingly
+
+<!--
+You might not need different browsers, you might not need all different versions. Choose a setup that makes you productive and trust into the CI
+-->
+
+---
+layout: section
+---
+
+# Configurations
+
+<!--
+Your framework will have options and different code paths
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Configurations
+
+<br />
+
+<v-clicks>
+
+- Behavior might depend on:
+  - `NODE_ENV`
+  - Environment variables
+  - JS runtime
+- 
+
+</v-clicks>
+
+<!--
+TODO
+-->
+
+---
+layout: section
+---
+
+# Expected behaviors
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## TODO
+
+TODO
+
+---
+layout: section
+---
+
+# Unknowns 👻
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## TODO
+
+TODO
 
 ---
 layout: end
