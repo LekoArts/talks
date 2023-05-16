@@ -9,5 +9,6 @@
   "dependencies": {
     "@slidev/cli": "^0.40.16",
     "@slidev/theme-default": "*"
-  }
+  },
+  "packageManager": "yarn@3.5.1"
 }
