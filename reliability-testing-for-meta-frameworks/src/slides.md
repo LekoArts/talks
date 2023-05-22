@@ -269,10 +269,15 @@ layout: fact
 hideInToc: true
 ---
 
-## 🧂 Adjust to your situation accordingly
+## Never assume things behave the same everywhere & <br />
+## test your core logic extensively
 
 <!--
 You might not need different browsers, you might not need all different versions. Choose a setup that makes you productive and trust into the CI
+
+SUMMARY:
+- Utils to handle paths and other system inconsistencies
+- Spend extra time in CI to check on all relevant platforms
 -->
 
 ---
@@ -314,7 +319,7 @@ layout: default
 hideInToc: true
 ---
 
-## 🧂 Testing code paths
+## Checking `NODE_ENV`
 
 <br />
 
@@ -390,7 +395,7 @@ hideInToc: true
 <br />
 
 ```ts {1}
-const trailingSlash = process.env.TRAILING_SLASH || `always`
+const trailingSlash = process.env.TRAILING_SLASH || 'always'
 
 const config: Config =  {
   trailingSlash,
@@ -421,10 +426,148 @@ Here's how we do it at Gatsby
 -->
 
 ---
+layout: fact
+hideInToc: true
+---
+
+## Add test coverage for each new feature & <br />
+## programatically run your tests e.g. via shell scripts
+
+<!--
+TODO
+-->
+
+---
 layout: section
 ---
 
 # Expected behaviors
+
+<!--
+Now that we went through the different configs, let's see how you can test functionalities of your meta-framework that should definitely work and that you control.
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Expected behaviors
+
+<br />
+
+<v-clicks>
+
+- Client-side navigation. Did it reload?
+- `console.log` information
+- Hot Module Replacement (HMR)
+- Accessibility checks (a11y)
+- Generated artifacts
+- Image components
+
+</v-clicks>
+
+<!--
+The sky is the limit here. But you probably want to focus on important, widely used features.
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Did it reload?
+
+<br />
+
+```ts {5-11}
+describe('Client-side navigation', () => {
+  it('did not reload', () => {
+    cy.visit('/')
+
+    cy.window().then(win => {
+      win.__didNotReload = true
+    })
+
+    cy.findByText('Page 2').click()
+
+    cy.window().its('__didNotReload').should('equal', true)
+  })
+})
+```
+
+<!--
+If there would be a reload, didNotReload would not exist on the window object
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## `console.log` information
+
+<br />
+
+```ts {9,17}
+Cypress.Commands.overwrite('visit', (orig, url, options = {}) => {
+  const newOptions = {
+    ...options,
+    onBeforeLoad: win => {
+      if (options.onBeforeLoad) {
+        options.onBeforeLoad(win)
+      }
+
+      cy.spy(win.console, 'log').as('hmrConsoleLog')
+    },
+  }
+
+  return orig(url, newOptions)
+})
+
+Cypress.Commands.add('waitForHmr', (message = 'App is up to date') => {
+  cy.get('@hmrConsoleLog').should('be.calledWithMatch', message)
+  cy.wait(1000)
+})
+```
+
+<!--
+You don't need to overwrite "visit", you can also alias it inside your test. This is just Gatsby's setup.
+
+We use this to inspect the browser console. "App is up to date" comes from our webpack implementation and is printed, when HMR is done.
+
+We also use this to check if ESLint rules work, since their warnings are printed to the console.
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## HMR utility
+
+Your testing suite can also invoke npm scripts. Use that to your advantage!
+
+[Example script](https://github.com/gatsbyjs/gatsby/blob/ccbbda5c6ae4cc9dfcbbf07891e9c74461c6ed55/e2e-tests/development-runtime/scripts/update.js)
+
+```ts
+// Pseudo code
+
+async function update() {
+  // Setup global history to track changes
+  // Parse CLI args
+  // Restore object if input is given
+  // Create file if it doesn't exist
+}
+
+update()
+```
+
+In Cypress you then can call it like this:
+
+```ts
+cy.exec('npm run update -- --file path/to/file.tsx --replacements "REPLACE_ME:Hello World"')
+```
 
 <!--
 TODO
@@ -435,9 +578,121 @@ layout: default
 hideInToc: true
 ---
 
-## TODO
+## HMR
 
+React component:
+
+```tsx {2}
+export default function Title() {
+  return <h1 data-testid="title">{'%TITLE%'}</h1>
+}
+```
+
+Test:
+
+```ts {4-6,8-9}
+describe('HMR: React components', () => {
+  it('updates on change', () => {
+    const text = `Hello World`
+    cy.exec(
+      `npm run update -- --file src/components/title.tsx --replacements "TITLE:${text}"`
+    )
+
+    cy.waitForHmr()
+    cy.findByTestId('title').should('have.text', text)
+  })
+})
+```
+
+<!--
 TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Accessibility checks
+
+There are many great talks and articles about this! Please watch/read those to learn more.
+
+For automated testing I can recommend:
+
+- [cypress-axe](https://github.com/component-driven/cypress-axe)
+- [cypress-real-events](https://github.com/dmtrKovalenko/cypress-real-events)
+
+But automated testing should only be a **part** of your a11y strategy.
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Generated artifacts
+
+<br />
+
+```ts {3-4,9-11,15-17}
+describe(`Webpack Assets`, () => {
+  beforeEach(() => {
+    cy.intercept("/static/font-name-**.woff2").as("font-regular")
+    cy.intercept("/image-file.png").as("static-folder-image")
+    cy.visit(`/assets`)
+  })
+
+  it(`should create font file`, () => {
+    cy.wait("@font-regular").should(req => {
+      expect(req.response.url).to.match(/font-name-/i)
+    })
+  })
+
+  it(`should load static folder asset`, () => {
+    cy.wait("@static-folder-image").should(req => {
+      expect(req.response.statusCode).to.be.gte(200).and.lt(400)
+    })
+  })
+})
+```
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Image components
+
+Use a tool like [@simonsmith/cypress-image-snapshot](https://github.com/simonsmith/cypress-image-snapshot) to visually test components.
+
+[Example test suite](https://github.com/gatsbyjs/gatsby/tree/ccbbda5c6ae4cc9dfcbbf07891e9c74461c6ed55/e2e-tests/visual-regression)
+
+<br />
+
+<img src="/image-diff-react-php.png" alt="Three screenshots side by side. The left one says 'Welcome to React' and shows the React logo. The right one says 'Welcome to PHP' and show the PHP logo. The middle image is the diff of those two images. So where they are different, it shows red overlays." />
+
+<!--
+TODO
+-->
+
+---
+layout: fact
+hideInToc: true
+---
+
+## Spend time learning advanced features of your testing tool & <br />
+## look out for community resources
+
+<!--
+TODO
+-->
 
 ---
 layout: section
@@ -454,9 +709,264 @@ layout: default
 hideInToc: true
 ---
 
-## TODO
+## Unknowns 👻
 
+<br />
+
+<v-clicks>
+
+- Ad-Blocker
+- Deploys between page navigations
+- Internet speed
+- Bots
+
+</v-clicks>
+
+<!--
 TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Missing/Blocked page resources
+
+<br />
+
+- Ad-Blockers can arbitrarily block deployed files e.g. because they contain banned words
+- Visitors can browse the website while a new deploy happened in the background
+- Deployment of files might be misbehaving
+
+These are all edge-cases but you can still make your framework resilient against those things.
+
+<!--
+Ad-Blocker and deploys between page navigations can be grouped into "missing/blocked page resources"
+-->
+
+---
+layout: full
+hideInToc: true
+class: code-scroll
+---
+
+```ts
+/* --- Cypress Configuration --- */
+import { defineConfig } from "cypress"
+// Utilties later used on "task"
+import { blockResourcesUtils } from "./cypress/utils/block-resources"
+
+export default defineConfig({
+  e2e: {
+    setupNodeEvents(on) {
+      on(`task`, {
+        ...blockResourcesUtils
+      })
+    },
+  },
+})
+
+/* --- Test File --- */
+
+function runTests(testNameSuffix) {
+  it(`Loads index - ${testNameSuffix}`, () => {
+    cy.visit(`/`).waitForAPIorTimeout(`onRouteUpdate`, waitForAPIOptions)
+    cy.getTestElement(`dom-marker`).contains(`index`)
+  })
+}
+
+const runBlockedScenario = ({ filter, pagePath }) => {
+  beforeEach(() => {
+    cy.task("getAssetsForPage", { pagePath, filter }).then(urls => {
+      for (const url of urls) {
+        cy.intercept(url, {
+          statusCode: 404,
+          body: "",
+        })
+        cy.log(`intercept ${url}`)
+      }
+    })
+  })
+
+  afterEach(() => {
+    cy.task("getAssetsForPage", { pagePath, filter }).then(urls => {
+      expect(Object.keys(cy.state("routes")).length).to.equal(urls.length)
+    })
+  })
+
+  runTests(`Blocked "${filter}" for "${pagePath}"`)
+}
+
+const runSuiteForPage = (label, pagePath) => {
+  describe(`Missing "${label}" resources`, () => {
+    describe(`Missing all "${label}" page assets`, () => {
+      runBlockedScenario({
+        pagePath,
+        filter: `all`,
+      })
+    })
+  })
+}
+
+runSuiteForPage(`Index`, `/`)
+```
+
+---
+layout: default
+hideInToc: true
+---
+
+## Internet speed
+
+Your front-end can have checks like these:
+
+```ts {3,6,14-17}
+const isSlow = () => {
+  if ('connection' in navigator && typeof navigator.connection !== 'undefined') {
+    if ((navigator.connection.effectiveType || '').includes('2g')) {
+      return true
+    }
+    if (navigator.connection.saveData) {
+      return true
+    }
+  }
+  return false
+}
+
+class Loader {
+  shouldPrefetch(pagePath) {
+    if (isSlow()) {
+      return false
+    }
+
+    return true
+  }
+}
+```
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Internet speed
+
+<br />
+
+```ts {8,15,19}
+Cypress.Commands.add('visitWith2G', (url, effectiveType = '2g') => {
+  cy.visit(url, {
+    onBeforeLoad(win) {
+      const connection = {
+        effectiveType,
+        addEventListener: () => {},
+      }
+      cy.stub(win.navigator, 'connection', connection);
+    },
+  })
+})
+
+describe('Loading indicator', () => {
+  beforeEach(() => {
+    cy.visitWith2G('/')
+  })
+
+  it('shown on 2G speed', () => {
+    cy.findByTestId('loading-indicator').should('be.visible')
+  })
+})
+```
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Bots
+
+Similarly you can also check for bots:
+
+```ts
+const BOT_REGEX = /bot|crawler|spider|crawling/i
+
+class Loader {
+  shouldPrefetch(pagePath) {
+    if (navigator.userAgent && BOT_REGEX.test(navigator.userAgent)) {
+      return false
+    }
+
+    return true
+  }
+}
+```
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+---
+
+## Bots
+
+<br />
+
+```json
+{
+  "scripts": {
+    "cy:run:bot": "CYPRESS_CONNECTION_TYPE=bot cypress run",
+  }
+}
+```
+
+<br />
+
+```ts
+{
+  setupNodeEvents(on) {
+    on('before:browser:launch', (browser = {}, opts) => {
+      if (process.env.CYPRESS_CONNECTION_TYPE === `bot`) {
+        opts.args.push('--user-agent="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"')
+      }
+  
+      return opts
+    })
+  },
+},
+```
+
+<!--
+TODO
+-->
+
+---
+layout: default
+hideInToc: true
+class: summary-screen
+---
+
+<br />
+
+- Test your core logic on different platforms & versions
+- Consider your complete API surface when testing features, including environment variables
+- Read up on advanced features like network request interception, stubbing, script execution to simulate and test behaviors
+- Use community packages for things like a11y and snapshot testing
+- Leverage bug reports to add test cases for _those_ edge-cases
+
+<!--
+TODO
+-->
 
 ---
 layout: end
@@ -465,7 +975,7 @@ hideInToc: true
 
 # Thank You!
 
-Slides on [lekoarts.de](https://www.lekoarts.de?utm_source=reliability-testing-for-meta-frameworks)
+Slides on [lekoarts.de](https://www.lekoarts.de/appearances?utm_source=reliability-testing-for-meta-frameworks)
 
 <!--
 That's all for my talk. The slides can be found on my website. Thank you!
