@@ -1,0 +1,14 @@
+{
+  "name": "reliability-testing-for-meta-frameworks",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export --per-slide --output ../reliability-testing-for-meta-frameworks.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.40.16",
+    "@slidev/theme-default": "*"
+  },
+  "packageManager": "yarn@3.5.1"
+}

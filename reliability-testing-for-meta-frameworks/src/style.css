@@ -1,0 +1,39 @@
+.slidev-vclick-target {
+  transition: opacity 400ms ease;
+}
+
+.slidev-vclick-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slidev-layout.section h1 {
+  @apply font-bold;
+  @apply text-white;
+}
+
+.slidev-layout.section {
+  @apply bg-gradient-to-tr from-blue-400 to-teal-400;
+}
+
+.slidev-layout.two-columns {
+  grid-gap: 2rem;
+}
+
+.slidev-code .line.dishonored {
+  opacity: 0.45;
+}
+
+.summary-screen {
+  @apply border-solid border-6 border-blue-400;
+}
+
+.summary-screen::before {
+  content: 'Summary';
+  @apply absolute top-0 left-0 flex items-center justify-center text-sm text-bold tracking-widest uppercase text-slate-400 pl-3 pt-2;
+}
+
+.slidev-layout.code-scroll .slidev-code-wrapper {
+  height: 100%;
+  overflow: auto;
+}
