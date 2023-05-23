@@ -12,6 +12,10 @@
   @apply text-white;
 }
 
+.slidev-layout.fact h1, .slidev-layout.fact h2 {
+  @apply font-bold;
+}
+
 .slidev-layout.section {
   @apply bg-gradient-to-tr from-blue-400 to-teal-400;
 }
