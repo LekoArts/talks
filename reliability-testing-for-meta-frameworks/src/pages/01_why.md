@@ -34,7 +34,7 @@ layout: default
 - Flaky, slow internet
 - Deployment of new artifacts
 - Race conditions
-- Framework Bugs 🐞
+- Bugs in your framework 🐞
 
 </v-clicks>
 

@@ -70,13 +70,6 @@ export default defineConfig({
 
 /* --- Test File --- */
 
-function runTests(testNameSuffix) {
-  it(`Loads index - ${testNameSuffix}`, () => {
-    cy.visit(`/`)
-    cy.findByTestId(`dom-marker`).contains(`index`)
-  })
-}
-
 const runBlockedScenario = ({ filter, pagePath }) => {
   beforeEach(() => {
     // "getAssetsForPage" is our own utility
@@ -99,19 +92,6 @@ const runBlockedScenario = ({ filter, pagePath }) => {
 
   runTests(`Blocked "${filter}" for "${pagePath}"`)
 }
-
-const runSuiteForPage = (label, pagePath) => {
-  describe(`Missing "${label}" resources`, () => {
-    describe(`Missing all "${label}" page assets`, () => {
-      runBlockedScenario({
-        pagePath,
-        filter: `all`,
-      })
-    })
-  })
-}
-
-runSuiteForPage(`Index`, `/`)
 ```
 
 ---

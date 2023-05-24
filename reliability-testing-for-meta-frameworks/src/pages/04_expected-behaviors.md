@@ -23,8 +23,8 @@ hideInToc: true
 - `console.log` information
 - Hot Module Replacement (HMR)
 - Accessibility checks (a11y)
-- Generated artifacts
 - Image components
+- Generated artifacts
 
 </v-clicks>
 
@@ -105,41 +105,7 @@ layout: default
 hideInToc: true
 ---
 
-## HMR utility
-
-Your testing suite can also invoke npm scripts. Use that to your advantage!
-
-[Example script](https://github.com/gatsbyjs/gatsby/blob/ccbbda5c6ae4cc9dfcbbf07891e9c74461c6ed55/e2e-tests/development-runtime/scripts/update.js)
-
-```ts
-// Pseudo code
-
-async function update() {
-  // Setup global history to track changes
-  // Parse CLI args
-  // Restore object if input is given
-  // Create file if it doesn't exist
-}
-
-update()
-```
-
-In Cypress you then can call it like this:
-
-```ts
-cy.exec('npm run update -- --file path/to/file.tsx --replacements "REPLACE_ME:Hello World"')
-```
-
-<!--
-If you want to know the details of the update script, open the slides afterwards and click on the link on this slide.
--->
-
----
-layout: default
-hideInToc: true
----
-
-## HMR
+## Hot Module Replacement
 
 React component:
 
@@ -165,6 +131,8 @@ describe('HMR: React components', () => {
 })
 ```
 
+[Example `update` script](https://github.com/gatsbyjs/gatsby/blob/ccbbda5c6ae4cc9dfcbbf07891e9c74461c6ed55/e2e-tests/development-runtime/scripts/update.js)
+
 <!--
 waitForHmr is what I shown in the previous "console.log" section
 -->
@@ -184,6 +152,25 @@ For automated testing I can recommend:
 - [cypress-real-events](https://github.com/dmtrKovalenko/cypress-real-events)
 
 But automated testing should only be a **part** of your a11y strategy.
+
+---
+layout: default
+hideInToc: true
+---
+
+## Image components
+
+Use a tool like [@simonsmith/cypress-image-snapshot](https://github.com/simonsmith/cypress-image-snapshot) to visually test components.
+
+[Example test suite](https://github.com/gatsbyjs/gatsby/tree/ccbbda5c6ae4cc9dfcbbf07891e9c74461c6ed55/e2e-tests/visual-regression)
+
+<br />
+
+<img src="/image-diff-react-php.png" alt="Three screenshots side by side. The left one says 'Welcome to React' and shows the React logo. The right one says 'Welcome to PHP' and show the PHP logo. The middle image is the diff of those two images. So where they are different, it shows red overlays." />
+
+<!--
+We use this to test our gatsby-plugin-image component.
+-->
 
 ---
 layout: default
@@ -218,25 +205,6 @@ describe(`Webpack Assets`, () => {
 
 <!--
 This can test if you configured your build tool correctly or your own code. Better to be safe than sorry.
--->
-
----
-layout: default
-hideInToc: true
----
-
-## Image components
-
-Use a tool like [@simonsmith/cypress-image-snapshot](https://github.com/simonsmith/cypress-image-snapshot) to visually test components.
-
-[Example test suite](https://github.com/gatsbyjs/gatsby/tree/ccbbda5c6ae4cc9dfcbbf07891e9c74461c6ed55/e2e-tests/visual-regression)
-
-<br />
-
-<img src="/image-diff-react-php.png" alt="Three screenshots side by side. The left one says 'Welcome to React' and shows the React logo. The right one says 'Welcome to PHP' and show the PHP logo. The middle image is the diff of those two images. So where they are different, it shows red overlays." />
-
-<!--
-We use this to test our gatsby-plugin-image component.
 -->
 
 ---

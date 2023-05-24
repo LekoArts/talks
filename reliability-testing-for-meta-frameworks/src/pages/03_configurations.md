@@ -99,17 +99,15 @@ export default config
 
 Set the environment variable inside the scripts you run:
 
-```json {all|3-4|5|6|7|8-10}
+```json {3|4-5|7-8}
 {
   "scripts": {
-    "build": "gatsby build",
-    "serve": "gatsby serve",
+    "test": "npm-run-all -c -s test:always test:never",
+    "test:always": "cross-env OPTION=always npm run test-script",
+    "test:never": "cross-env OPTION=never npm run test-script",
+    "//": "Other scripts...",
     "cy:config": "cross-env-shell cypress run --config-file \"cypress/configs/$OPTION.ts\"",
     "build:opt": "cross-env-shell TRAILING_SLASH=$OPTION npm run build",
-    "ssat:opt": "cross-env-shell OPTION=$OPTION TRAILING_SLASH=$OPTION ssat serve http://localhost:9000 cy:config",
-    "test:always": "cross-env OPTION=always npm run build:opt && cross-env OPTION=always npm run ssat:opt",
-    "test:never": "cross-env OPTION=never npm run build:opt && cross-env OPTION=never npm run ssat:opt",
-    "test": "npm-run-all -c -s test:always test:never"
   }
 }
 ```
