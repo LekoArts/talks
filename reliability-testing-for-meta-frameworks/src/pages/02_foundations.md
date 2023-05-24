@@ -22,7 +22,9 @@ hideInToc: true
 - Unit test core functionalities
 - Build out test utilities and patterns
 - Run your tests on all supported versions and platforms
-- Enjoy your testing setup
+
+
+**Enjoy your testing setup**
 
 </v-clicks>
 

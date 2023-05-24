@@ -84,12 +84,6 @@ const runBlockedScenario = ({ filter, pagePath }) => {
     })
   })
 
-  afterEach(() => {
-    cy.task("getAssetsForPage", { pagePath, filter }).then(urls => {
-      expect(Object.keys(cy.state("routes")).length).to.equal(urls.length)
-    })
-  })
-
   runTests(`Blocked "${filter}" for "${pagePath}"`)
 }
 ```
@@ -202,7 +196,7 @@ hideInToc: true
 
 <br />
 
-```ts
+```ts {4-6}
 {
   setupNodeEvents(on) {
     on('before:browser:launch', (browser = {}, opts) => {

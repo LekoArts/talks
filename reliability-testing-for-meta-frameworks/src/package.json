@@ -7,7 +7,7 @@
     "export": "slidev export --per-slide --output ../reliability-testing-for-meta-frameworks.pdf"
   },
   "dependencies": {
-    "@slidev/cli": "^0.40.16",
+    "@slidev/cli": "^0.41.1",
     "@slidev/theme-default": "*"
   },
   "packageManager": "yarn@3.5.1"

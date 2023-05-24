@@ -23,7 +23,7 @@ hideInToc: true
 - `console.log` information
 - Hot Module Replacement (HMR)
 - Accessibility checks (a11y)
-- Image components
+- Built-in components
 - Generated artifacts
 
 </v-clicks>
@@ -158,7 +158,7 @@ layout: default
 hideInToc: true
 ---
 
-## Image components
+## Built-in components
 
 Use a tool like [@simonsmith/cypress-image-snapshot](https://github.com/simonsmith/cypress-image-snapshot) to visually test components.
 
@@ -213,4 +213,4 @@ hideInToc: true
 ---
 
 ## Spend time learning advanced features of your testing tool & <br />
-## look out for community resources
+## mimic your users' behavior

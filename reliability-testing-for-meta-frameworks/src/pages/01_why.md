@@ -32,8 +32,6 @@ layout: default
 - Inconsistencies between operating systems & browsers
 - Browser extensions like Ad-Blockers
 - Flaky, slow internet
-- Deployment of new artifacts
-- Race conditions
 - Bugs in your framework 🐞
 
 </v-clicks>

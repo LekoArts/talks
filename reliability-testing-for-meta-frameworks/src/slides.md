@@ -108,7 +108,7 @@ class: summary-screen
 - Consider your complete API surface when testing features, including environment variables
 - Read up on advanced features like network request interception, stubbing, script execution to simulate and test behaviors
 - Use community packages for things like a11y and snapshot testing
-- Leverage bug reports to add test cases for edge-cases
+- Leverage bug reports to add tests for edge-cases
 
 <!--
 Reliability testing for your meta-framework is never done
