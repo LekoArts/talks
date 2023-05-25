@@ -2,6 +2,7 @@
 
 Overview of my talks 🎤💻
 
+- [Reliability Testing for Meta-Frameworks](https://github.com/LekoArts/talks/tree/main/reliability-testing-for-meta-frameworks)
 - [Becoming an Open Source Champion with Gatsby](https://github.com/LekoArts/talks/tree/main/becoming-an-open-source-champion)
 - [Parallel Query Running with Gatsby 4](https://github.com/LekoArts/talks/tree/main/gatsby-v4)
 - [Introducing: Gatsby v3](https://github.com/LekoArts/talks/tree/main/gatsby-v3)
